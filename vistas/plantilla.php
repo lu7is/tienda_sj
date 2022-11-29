@@ -1,8 +1,3 @@
-<?php
-  session_start();
-  $peticionAjax = false;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,13 +24,23 @@
 
 <body class="">
 <?php 
+
+
+$peticionAjax = false;
+
 require_once "./controladores/VistasController.php";
 $vt = new vistasController();
 $vistas = $vt->Obtener_vistas_controlador();
 
-  if($vistas == "login"):
-   require_once "contenidos/login.php";
+  if($vistas == "login" || $vistas == "404" ):
+    if($vistas == "login"){
+      require_once "contenidos/login.php";
+    }else{
+      require_once "contenidos/404.php";
+    }
+   
   else:
+    session_start();
 ?>
   <div class="wrapper ">
       <?php include "modulos/nav.php"; ?>
@@ -68,6 +73,10 @@ $vistas = $vt->Obtener_vistas_controlador();
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="<?php echo SERVERURL;?>/vistas/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="<?php echo SERVERURL;?>/vistas/demo/demo.js"></script>
+  <!-- SWEET ALERT -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!--AÑADIMOS ARCHIVO JS PROPIO-->
+  <script src="<?php echo SERVERURL;?>/vistas/js/prueba.js"></script>
   
 </body>
 

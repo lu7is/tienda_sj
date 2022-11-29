@@ -10,7 +10,7 @@
             return $enlace;
         }
 
-        protected function Consultas_Simples($consulta){
+        protected function consultas_simples($consulta){
             $respuesta = self::conectar()->prepare($consulta);
             $respuesta->execute();
             return $respuesta;
@@ -31,4 +31,74 @@
             $output = openssl_decrypt(base64_decode($string),METHOD, $key,0, $iv);
             return $output;
         }
+
+        protected function generar_codigo ($letra, $longitud, $num){
+            for($i = 1; $i <= $longitud; $i++){
+                $number = rand(0,9);
+                $letra.= $number;
+            }
+            return $letra.$num;
+        }
+
+        protected function limpiar_cadena($cadena){
+            $cadena = trim($cadena);
+            $cadena = stripslashes($cadena);
+            $cadena = str_ireplace("<script>", "", $cadena);
+            $cadena = str_ireplace("</script>", "", $cadena);
+            $cadena = str_ireplace("<script src", "", $cadena);
+            $cadena = str_ireplace("<script type", "", $cadena);
+            $cadena = str_ireplace("SELECT * FROM", "", $cadena);
+            $cadena = str_ireplace("DELETE FROM", "", $cadena);
+            $cadena = str_ireplace("INSERT INTO", "", $cadena);
+            $cadena = str_ireplace("--", "", $cadena);
+            $cadena = str_ireplace("[", "", $cadena);
+            $cadena = str_ireplace("]", "", $cadena);
+            $cadena = str_ireplace("==", "", $cadena);
+            $cadena = str_ireplace(";", "", $cadena);
+            return $cadena;
+        }
+
+        protected function sweet_alert($datos){
+            if($datos['Alerta']=="simple"){
+                $alerta="
+                    <script>
+                    Swal(
+                        '".$datos['Titulo']."',
+                        '".$datos['Texto']."',
+                        '".$datos['Tipo']."'
+                      )
+                    </script>
+                ";
+            }elseif($datos['Alerta']=="recargar"){
+                $alerta="
+                    <script>
+                    Swal.fire({
+                        title: '".$datos['Titulo']."',
+                        text: ".$datos['Texto'].",
+                        icon: '".$datos['Tipo']."',
+                        confirmButtonText: 'Aceptar'
+                      }).then(function () {
+                        location.reload();
+                      })
+                    </script>
+                ";
+            }elseif($datos['Alerta']=="limpiar"){
+                $alerta="
+                    <script>
+                    Swal.fire({
+                        title: '".$datos['Titulo']."',
+                        text: ".$datos['Texto'].",
+                        icon: '".$datos['Tipo']."',
+                        confirmButtonText: 'Aceptar'
+                      }).then(function () {
+                        $('.FormularioAjax')[0].reset();
+                      })
+                    </script>
+                ";
+
+            }
+            return $alerta;
+        }
+
+
     }
