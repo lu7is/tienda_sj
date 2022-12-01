@@ -16,6 +16,29 @@
             return $respuesta;
         }
 
+        protected function agregar_cuenta($datos){
+            $sql = self::conectar()->prepare("INSERT INTO cuenta (cuentaCodigo, cuentaPrivilegio, cuentaUsuario, cuentaClave, cuentaEmail, cuentaEstado, cuentaTipo, cuentaGenero ) 
+            VALUES(:Codigo, :Privilegio, :Usuario, :Clave, :Email, :Estado, :Tipo, :Genero )");
+            $sql->bindParam(":Codigo",$Codigo['Codigo']);
+            $sql->bindParam(":Privilegio",$Privilegio['Privilegio']);
+            $sql->bindParam(":Usuario",$Usuario['Usuario']);
+            $sql->bindParam(":Clave",$Clave['Clave']);
+            $sql->bindParam(":Email",$Email['Email']);
+            $sql->bindParam(":Estado",$Estado['Estado']);
+            $sql->bindParam(":Tipo",$Tipo['Tipo']);
+            $sql->bindParam(":Genero",$Genero['Genero']);
+            $sql->execute();
+            return $sql();
+        }
+
+        protected function eliminar_cuenta($codigo){
+            $sql=self::conectar()->prepare("DELETE FROM cuenta WHERE cuentaCodigo =:Codigo ");
+            $sql->bindParam(":Codigo",$Codigo);
+            $sql->execute();
+            return $sql();
+
+        }
+
         public function encriptar($string){
             $output = FALSE;
             $key = hash('sha256', SECRET_KEY);
