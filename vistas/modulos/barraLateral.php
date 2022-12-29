@@ -1,5 +1,5 @@
 
-<div class="sidebar" data-color="orange">
+<div class="sidebar" data-color="gray">
     
     <div class="logo">
       <a href="<?php echo SERVERURL;?>dashboard" class="simple-text logo-mini">
@@ -11,7 +11,7 @@
     </div>
     <div class="sidebar-wrapper" id="sidebar-wrapper">
       <ul class="nav">
-        <li class="active ">
+        <li class=" ">
           <a href="<?php echo SERVERURL;?>dashboard">
             <i class="now-ui-icons design_app"></i>
             <p>Inicio</p>

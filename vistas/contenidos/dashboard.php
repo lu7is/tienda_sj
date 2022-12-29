@@ -1,8 +1,5 @@
 <div class="content"><br>
-    <h1>pagina principal</h1>
-       
-
-            <div class="col-md-4">
+  <div class="col-md-4">
               <div class="card card-user">
                 <div class="image">
               

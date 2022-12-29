@@ -19,6 +19,7 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="<?php echo SERVERURL;?>/vistas/demo/demo.css" rel="stylesheet" />
   <link href="<?php echo SERVERURL;?>/vistas/css/plantilla.css" rel="stylesheet" />
+  
 </head>
 
 
@@ -41,19 +42,23 @@ $vistas = $vt->Obtener_vistas_controlador();
    
   else:
     session_start();
+
 ?>
+  <?php include "modulos/nav.php"; ?>
+  <?php include "modulos/barraLateral.php"; ?>
+
+
+
   <div class="wrapper ">
-      <?php include "modulos/nav.php"; ?>
+ 
+  <div class="main-panel" id="main-panel">
 
-      <?php include "modulos/barraLateral.php"; ?><br>
-
-
-      <?php  require_once $vistas; ?>
-
-      </div>
+  <?php  require_once $vistas; ?>
       
       <?php require_once "modulos/footer.php"; ?>
       
+      </div> 
+      </div>   
       <?php
       endif;
   ?>
@@ -76,7 +81,7 @@ $vistas = $vt->Obtener_vistas_controlador();
   <!-- SWEET ALERT -->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!--AÑADIMOS ARCHIVO JS PROPIO-->
-  <script src="<?php echo SERVERURL;?>/vistas/js/prueba.js"></script>
+  <script src="<?php echo SERVERURL;?>/vistas/js/usuarios/administradores.js"></script>
   
 </body>
 
