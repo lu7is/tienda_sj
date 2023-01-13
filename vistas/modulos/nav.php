@@ -51,8 +51,10 @@
               </div>
             </nav>
       <!-- End Navbar -->
-            <div class="panel-header panel-header-sm">
-                <canvas id="bigDashboardChart"></canvas>
+            <div class="panel-header panel-header-mg">
+                <canvas id="bigDashboardChart">
+                  <h1>hola</h1>
+                </canvas>
                 
             </div>
     

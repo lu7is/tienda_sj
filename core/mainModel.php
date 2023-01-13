@@ -55,7 +55,7 @@
             return $output;
         }
 
-        protected function generar_codigo ($letra, $longitud, $num){
+        protected function generar_codigo($letra, $longitud, $num){
             for($i = 1; $i <= $longitud; $i++){
                 $number = rand(0,9);
                 $letra.= $number;

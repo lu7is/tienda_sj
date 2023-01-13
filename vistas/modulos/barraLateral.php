@@ -1,5 +1,5 @@
 
-<div class="sidebar" data-color="gray">
+<div class="sidebar" id = "sidebar" data-color="">
     
     <div class="logo">
       <a href="<?php echo SERVERURL;?>dashboard" class="simple-text logo-mini">
