@@ -19,7 +19,7 @@
                 <div class="modal-footer">
                   <div class="card">
                       <div class="card-body">
-                      <form id="frmAdministradores">
+                      <form id="frmAdministradores" data-form ="save">
                           <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="inputAddress">*Cedula</label>
@@ -68,6 +68,7 @@
                           </div>
             
                           <button type="submit" class="btn btn-primary">Registrar Administradores</button>
+                          <div class="RespuestaAjax"></div>
                         </form>
                         </div>
                         </div>

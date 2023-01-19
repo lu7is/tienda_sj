@@ -1,7 +1,7 @@
 <?php
 
     const SERVER = "localhost";
-    const DB = "rapitiendasj";
+    const DB = "bdsistemsueño";
     const USER = "root";
     const PASS = "";
 

@@ -94,23 +94,14 @@
                            "Codigo"=>$Codigo
                         ];
 
-                        echo "<pre>";
-                      print_r($dataAD);
-                        echo "</pre>";
-
-                       // echo "<pre>";
-                        echo $guardarAdmin = administradorModel::Registrar_administrador($dataAD);
-                       // echo "</pre>";
-
-                       echo "<pre>";
-                      print_r($guardarAdmin);
-                        echo "</pre>";
-                        if($guardarAdmin->rowCount()>=1){
-                            $alerta = [
-                                "Alerta"=>"limpiar",
-                                "Titulo"=>"Administrador Registrado",
-                                "Texto"=>"El Administrador se ha registrado correctamente",
-                                "Tipo"=>"success"
+                     $guardarAdmin = administradorModel::Registrar_administrador($dataAD);
+           
+                    if($guardarAdmin->rowCount()>=1){
+                        $alerta = [
+                             "Alerta"=>"limpiar",
+                             "Titulo"=>"Administrador Registrado",
+                             "Texto"=>"El Administrador se ha registrado correctamente",
+                             "Tipo"=>"success"
                             ];
                         }else{
                             mainModel::eliminar_cuenta($Codigo);

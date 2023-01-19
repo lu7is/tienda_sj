@@ -17,11 +17,63 @@ alert('dentro de jquery.');
 */
 
 $( document ).ready(function() {
-    console.log( "ready!" );
+    var form=$(this);
+
+    var tipo=form.attr('data-form');
+    var accion=form.attr('action');
+    var metodo=form.attr('method');
+    var respuesta=form.children('.RespuestaAjax');
+
+    var msjError="<script>swal('Ocurrió un error inesperado','Por favor recargue la página','error');</script>";
+    var formdata = new FormData(this);
+
+
+    var textoAlerta;
+    if(tipo==="save"){
+        textoAlerta="Los datos que enviaras quedaran almacenados en el sistema";
+    }else if(tipo==="delete"){
+        textoAlerta="Los datos serán eliminados completamente del sistema";
+    }else if(tipo==="update"){
+        textoAlerta="Los datos del sistema serán actualizados";
+    }else{
+        textoAlerta="Quieres realizar la operación solicitada";
+    }
 });
 
 $('#frmAdministradores').submit(function(e){
+
     e.preventDefault();
+
+    var form=$(this);
+
+    var tipo=form.attr('data-form');
+    var accion=form.attr('action');
+    var metodo=form.attr('method');
+    var respuesta=form.children('.RespuestaAjax');
+
+    var msjError="<script>swal('Ocurrió un error inesperado','Por favor recargue la página','error');</script>";
+    var formdata = new FormData(this);
+
+
+    var textoAlerta;
+    if(tipo==="save"){
+        textoAlerta="Los datos que enviaras quedaran almacenados en el sistema";
+    }else if(tipo==="delete"){
+        textoAlerta="Los datos serán eliminados completamente del sistema";
+    }else if(tipo==="update"){
+        textoAlerta="Los datos del sistema serán actualizados";
+    }else{
+        textoAlerta="Quieres realizar la operación solicitada";
+    }
+
+    swal({
+        title: "¿Estás seguro?",   
+        text: textoAlerta,   
+        type: "question",   
+        showCancelButton: true,     
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar"
+    }).then(function () {
     var Cedula = $('#Cedula').val();
     var Nombre = $('#Nombre').val();
     var Apellido = $('#Apellido').val();
@@ -64,6 +116,7 @@ $('#frmAdministradores').submit(function(e){
                     
                   })
                   console.log(response);
+                  /*
                   console.log (Cedula); 
                   console.log (Nombre);
                   console.log (Apellido);
@@ -74,6 +127,7 @@ $('#frmAdministradores').submit(function(e){
                   console.log (Direccion);
                   console.log (Telefono);
                   console.log (Fecha);
+                  */
                   
                   
             }
@@ -83,6 +137,6 @@ $('#frmAdministradores').submit(function(e){
 
         
     
- 
+});
 
 });
