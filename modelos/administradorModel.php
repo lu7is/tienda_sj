@@ -7,15 +7,22 @@
 
     class administradorModel extends mainModel{
 
-        protected function Registrar_administrador($datos){
-            $sql = mainModel::conectar()->prepare("INSERT INTO admin(cedulaAdmin, nombreAdmin, telAdmin, CuentaCodigo ) 
-            VALUES (:Cedula, :Nombre, :Telefono, :Codigo)");
-            $sql->bindParam(":Cedula",$Cedula['Cedula']);
-            $sql->bindParam(":Nombre",$Nombre['Nombre']);
-            $sql->bindParam(":Telefono",$Telefono['Telefono']);
-            $sql->bindParam(":Codigo",$Codigo['Codigo']);
+        protected function Registrar_administrador($data){
+            $sql = mainModel::conectar()->prepare("INSERT INTO admin(cedulaAdmin, nombreAdmin, apellidoAdmin, telAdmin, direccionAdmin, cuentaCodigo ) 
+            VALUES (:Cedula, :Nombre, :Apellido, :Telefono, :Direccion, :Codigo)");
+            $sql->bindParam(":Cedula",$data['Cedula']);
+            $sql->bindParam(":Nombre",$data['Nombre']);
+            $sql->bindParam(":Apellido",$data['Apellido']);
+            $sql->bindParam(":Telefono",$data['Telefono']);
+            $sql->bindParam(":Direccion",$data['Direccion']);
+            $sql->bindParam(":Codigo",$data['Codigo']);
             $sql->execute();
+           
             return $sql;
+           
         }
+
+
+
     }
 

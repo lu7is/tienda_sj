@@ -1,6 +1,8 @@
 
+//alert('El email introducido es correcto.');
+/*
 $(document).ready(function(){
-$('#Cedula','#Telefono').validCampoFranz('0123456789'); 
+//$('#Cedula','#Telefono').validCampoFranz('0123456789'); 
 $('#Nombre','#Apellido1','#Apellido2',).validCampoFranz(' abcdefghijklmnñopqrstuvwxyzáéiou');
 
 if($("#Email").val().indexOf('@', 0) == -1 || $("#Email").val().indexOf('.', 0) == -1) {
@@ -8,9 +10,14 @@ if($("#Email").val().indexOf('@', 0) == -1 || $("#Email").val().indexOf('.', 0) 
     return false;
 }
 
-alert('El email introducido es correcto.');
+alert('dentro de jquery.');
 
 
+});
+*/
+
+$( document ).ready(function() {
+    console.log( "ready!" );
 });
 
 $('#frmAdministradores').submit(function(e){
@@ -57,6 +64,17 @@ $('#frmAdministradores').submit(function(e){
                     
                   })
                   console.log(response);
+                  console.log (Cedula); 
+                  console.log (Nombre);
+                  console.log (Apellido);
+                  console.log (Email);
+                  console.log (Usuario);
+                  console.log (Password1);
+                  console.log (Password);
+                  console.log (Direccion);
+                  console.log (Telefono);
+                  console.log (Fecha);
+                  
                   
             }
         });

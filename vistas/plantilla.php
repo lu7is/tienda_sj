@@ -13,6 +13,7 @@
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <!-- CSS Files -->
   <link href="<?php echo SERVERURL;?>/vistas/css/bootstrap.min.css" rel="stylesheet" />
   <link href="<?php echo SERVERURL;?>/vistas/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
@@ -65,7 +66,8 @@ $vistas = $vt->Obtener_vistas_controlador();
   
   
   <!--   Core JS Files   -->
-  <script src="<?php echo SERVERURL;?>/vistas/js/core/jquery.min.js"></script>
+  <script src="<?php echo SERVERURL;?>/vistas/js/core/jquery.min.js"></script> 
+  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
   <script src="<?php echo SERVERURL;?>/vistas/js/core/popper.min.js"></script>
   <script src="<?php echo SERVERURL;?>/vistas/js/core/bootstrap.min.js"></script>
   <script src="<?php echo SERVERURL;?>/vistas/js/plugins/perfect-scrollbar.jquery.min.js"></script>
@@ -82,7 +84,8 @@ $vistas = $vt->Obtener_vistas_controlador();
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!--AÑADIMOS ARCHIVO JS PROPIO-->
   <script src="<?php echo SERVERURL;?>/vistas/js/usuarios/administradores.js"></script>
-  
+ 
+
 </body>
 
 </html>

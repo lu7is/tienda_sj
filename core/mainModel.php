@@ -17,25 +17,23 @@
         }
 
         protected function agregar_cuenta($datos){
-            $sql = self::conectar()->prepare("INSERT INTO cuenta (cuentaCodigo, cuentaPrivilegio, cuentaUsuario, cuentaClave, cuentaEmail, cuentaEstado, cuentaTipo, cuentaGenero ) 
-            VALUES(:Codigo, :Privilegio, :Usuario, :Clave, :Email, :Estado, :Tipo, :Genero )");
-            $sql->bindParam(":Codigo",$Codigo['Codigo']);
-            $sql->bindParam(":Privilegio",$Privilegio['Privilegio']);
-            $sql->bindParam(":Usuario",$Usuario['Usuario']);
-            $sql->bindParam(":Clave",$Clave['Clave']);
-            $sql->bindParam(":Email",$Email['Email']);
-            $sql->bindParam(":Estado",$Estado['Estado']);
-            $sql->bindParam(":Tipo",$Tipo['Tipo']);
-            $sql->bindParam(":Genero",$Genero['Genero']);
+            $sql = self::conectar()->prepare("INSERT INTO cuenta (cuentaCodigo, cuentaUsuario, cuentaClave, cuentaEmail, cuentaEstado, fecha ) 
+            VALUES(:Codigo, :Usuario, :Clave, :Email, :Estado, :Fecha )");
+            $sql->bindParam(":Codigo",$datos['Codigo']);
+            $sql->bindParam(":Usuario",$datos['Usuario']);
+            $sql->bindParam(":Clave",$datos['Clave']);
+            $sql->bindParam(":Email",$datos['Email']);
+            $sql->bindParam(":Estado",$datos['Estado']);
+            $sql->bindParam(":Fecha",$datos['Fecha']);
             $sql->execute();
-            return $sql();
+            return $sql;
         }
 
         protected function eliminar_cuenta($codigo){
             $sql=self::conectar()->prepare("DELETE FROM cuenta WHERE cuentaCodigo =:Codigo ");
             $sql->bindParam(":Codigo",$Codigo);
             $sql->execute();
-            return $sql();
+            return $sql;
 
         }
 
@@ -120,6 +118,7 @@
                 ";
 
             }
+
             return $alerta;
         }
 

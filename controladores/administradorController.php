@@ -19,9 +19,9 @@
             $Direccion = mainModel::limpiar_cadena($_POST['Direccion']);
             $Telefono = mainModel::limpiar_cadena($_POST['Telefono']);
             $Fecha = mainModel::limpiar_cadena($_POST['Fecha']);
-            $Privilegio = mainModel::limpiar_cadena($_POST['Privilegio']);
+            
 
-            if($Password != $Password1){
+            if($Password1 != $Password){
                 $alerta=[
                     "Alerta"=>"simple",
                     "Titulo"=>"ocurrio un error inesperado",
@@ -74,17 +74,15 @@
 
                     $dataAC = [
                         "Codigo"=>$Codigo,
-                        "Privilegio"=>$Privilegio,
                         "Usuario"=>$Usuario,
                         "Clave"=>$Clave,
                         "Email"=>$Email,
                         "Estado"=>"Activo",
-                        "Tipo"=>"Administrador",
-                        "Genero"=>"Administrador"
-
+                        "Fecha"=>$Fecha
                     ];
 
-                    $guardarCuenta=mainModel::agregar_cuenta($dataAC);
+                    $guardarCuenta = mainModel::agregar_cuenta($dataAC);
+
                     if($guardarCuenta->rowCount()>=1){
 
                         $dataAD=[
@@ -92,10 +90,21 @@
                            "Nombre"=>$Nombre,
                            "Apellido"=>$Apellido,
                            "Telefono"=>$Telefono,
+                           "Direccion"=>$Direccion,
                            "Codigo"=>$Codigo
                         ];
-                        $guardarAdmin = administradorModel::Registrar_administrador($dataAD);
 
+                        echo "<pre>";
+                      print_r($dataAD);
+                        echo "</pre>";
+
+                       // echo "<pre>";
+                        echo $guardarAdmin = administradorModel::Registrar_administrador($dataAD);
+                       // echo "</pre>";
+
+                       echo "<pre>";
+                      print_r($guardarAdmin);
+                        echo "</pre>";
                         if($guardarAdmin->rowCount()>=1){
                             $alerta = [
                                 "Alerta"=>"limpiar",
