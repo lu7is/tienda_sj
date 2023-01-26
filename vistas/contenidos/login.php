@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Rapitienda SJ | Login</title>
+    <title>Decoraciones | Login</title>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -22,13 +22,13 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <h1>Rapitienda SJ</h1>
+      <h1>Decoraciones En Sueño</h1>
     </div>
 
-    <!-- Login Form -->
-    <form action="vistas/dashboard.php">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuario">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
+    <!-- Login Form  CREADO EL 25 DE ENERO DEL 2023-->
+    <form action="" method = "POST" autocomplete = "off" class = "LoginForm"  >
+      <input type="text" id="login" class="fadeIn second" name="UsuarioF" placeholder="Usuario">
+      <input type="text" id="password" class="fadeIn third" name="ClaveF" placeholder="Contraseña" >
       <input type="submit" class="fadeIn fourth" value="Iniciar Sesión">
     </form>
 

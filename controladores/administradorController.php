@@ -33,9 +33,9 @@
 
             if($consulta->rowCount()>=1){
                 $alerta = [
-                    "Alerta"=>"Simple",
+                    "Alerta"=>"simple",
                     "Titulo"=>"Error inesperado",
-                    "Texto"=>"El usuario ya se encuentra registrado en la base de datos",
+                    "Texto"=>"Esta cedula ya se encuentra registrada en la base de datos",
                     "Tipo"=>"error"
                 ];
             }else{
@@ -50,9 +50,9 @@
 
             if($ec >= 1){
                 $alerta = [
-                    "Alerta"=>"Simple",
+                    "Alerta"=>"simple",
                     "Titulo"=>"Error inesperado",
-                    "Texto"=>"El correo ya se encuentra registrado en la base de datos",
+                    "Texto"=>"Este correo ya se encuentra registrado en la base de datos",
                     "Tipo"=>"error"
                 ];
             }else{
@@ -60,9 +60,9 @@
                 
                 if($consulta3->rowCount()>= 1){
                     $alerta = [
-                        "Alerta"=>"Simple",
+                        "Alerta"=>"simple",
                         "Titulo"=>"Error inesperado",
-                        "Texto"=>"El Usuario ya se encuentra registrado en la base de datos",
+                        "Texto"=>"Este usuario ya se encuentra registrado en la base de datos",
                         "Tipo"=>"error"
                     ];
                 }else{
@@ -98,15 +98,16 @@
            
                     if($guardarAdmin->rowCount()>=1){
                         $alerta = [
-                             "Alerta"=>"limpiar",
-                             "Titulo"=>"Administrador Registrado",
+                            "Alerta"=>"limpiar",
+                            "Titulo"=>"Administrador Registrado",
                              "Texto"=>"El Administrador se ha registrado correctamente",
                              "Tipo"=>"success"
+
                             ];
                         }else{
                             mainModel::eliminar_cuenta($Codigo);
                             $alerta = [
-                                "Alerta"=>"Simple",
+                                "Alerta"=>"simple",
                                 "Titulo"=>"Error inesperado",
                                 "Texto"=>"El Administrador no fue registrada",
                                 "Tipo"=>"error"
@@ -115,7 +116,7 @@
 
                     }else{
                         $alerta = [
-                            "Alerta"=>"Simple",
+                            "Alerta"=>"simple",
                             "Titulo"=>"Error inesperado",
                             "Texto"=>"La cuenta no fue registrada",
                             "Tipo"=>"error"
@@ -124,10 +125,7 @@
                 }
             }
         }
-
             }
-            
-
             return mainModel::sweet_alert($alerta);
         }
     }

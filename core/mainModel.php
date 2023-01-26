@@ -4,6 +4,9 @@
     }else{
         require_once "./core/configApp.php";
     }
+
+    $alerta;
+
     class mainModel {
         protected function conectar(){
             $enlace = new PDO(SGBD,USER,PASS);
@@ -35,6 +38,35 @@
             $sql->execute();
             return $sql;
 
+        }
+
+        protected function GuardarBitacora($datos){
+            $sql=self::conectar()->prepare("INSERT INTO tblbitacora(BitacoraCodigo, BitacoraFecha, BitacoraHoraInicio, BitacoraHoraFinal, BitacoraTipo, BitacoraYear, CuentaCodigo)
+                                            VALUES (:Codigo, :Fecha, :HoraInicio, :HoraFinal, :Tipo, :Year, :Cuenta)");
+            $sql->bindParam(":Codigo",$datos['Codigo']);
+            $sql->bindParam(":Fecha",$datos['Fecha']);
+            $sql->bindParam(":HoraInicio",$datos['HoraInicio']);
+            $sql->bindParam(":HoraFinal",$datos['HoraFinal']);
+            $sql->bindParam(":Tipo",$datos['Tipo']);
+            $sql->bindParam(":Year",$datos['Year']);
+            $sql->bindParam(":Cuenta",$datos['Cuenta']);
+            $sql->execute();
+            return $sql;
+        }
+
+        protected function ActualizarBitacora($CodigoEn, $Hora){
+            $sql=self::conectar()->prepare("UPDATE tblbitacora SET BitacoraHoraFinal = :Hora WHERE BitacoraCodigo = :Codigo ");
+            $sql->bindParam(":Hora",$Hora);
+            $sql->bindParam(":Codigo",$CodigoEn);
+            $sql->execute();
+            return $sql;
+        }
+
+        protected function EliminarBitacora($CodigoEn){
+            $sql=self::conectar()->prepare("DELETE FROM tblbitacora WHERE CuentaCodigo = :Codigo ");
+            $sql->bindParam(":Codigo",$CodigoEn);
+            $sql->execute();
+            return $sql;
         }
 
         public function encriptar($string){
@@ -83,7 +115,7 @@
             if($datos['Alerta']=="simple"){
                 $alerta="
                     <script>
-                    Swal(
+                    Swal.fire(
                         '".$datos['Titulo']."',
                         '".$datos['Texto']."',
                         '".$datos['Tipo']."'
@@ -108,12 +140,13 @@
                     <script>
                     Swal.fire({
                         title: '".$datos['Titulo']."',
-                        text: ".$datos['Texto'].",
+                        text: '".$datos['Texto']."',
                         icon: '".$datos['Tipo']."',
                         confirmButtonText: 'Aceptar'
                       }).then(function () {
-                        $('.FormularioAjax')[0].reset();
+                        $('.frmAdministradores')[0].reset();
                       })
+                     
                     </script>
                 ";
 
@@ -121,6 +154,6 @@
 
             return $alerta;
         }
-
+  
 
     }

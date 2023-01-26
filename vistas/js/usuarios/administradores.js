@@ -1,61 +1,18 @@
 
-//alert('El email introducido es correcto.');
-/*
-$(document).ready(function(){
-//$('#Cedula','#Telefono').validCampoFranz('0123456789'); 
-$('#Nombre','#Apellido1','#Apellido2',).validCampoFranz(' abcdefghijklmnñopqrstuvwxyzáéiou');
 
-if($("#Email").val().indexOf('@', 0) == -1 || $("#Email").val().indexOf('.', 0) == -1) {
-    alert('El correo electrónico introducido no es correcto.');
-    return false;
-}
-
-alert('dentro de jquery.');
-
-
-});
-*/
-
-$( document ).ready(function() {
-    var form=$(this);
-
-    var tipo=form.attr('data-form');
-    var accion=form.attr('action');
-    var metodo=form.attr('method');
-    var respuesta=form.children('.RespuestaAjax');
-
-    var msjError="<script>swal('Ocurrió un error inesperado','Por favor recargue la página','error');</script>";
-    var formdata = new FormData(this);
-
-
-    var textoAlerta;
-    if(tipo==="save"){
-        textoAlerta="Los datos que enviaras quedaran almacenados en el sistema";
-    }else if(tipo==="delete"){
-        textoAlerta="Los datos serán eliminados completamente del sistema";
-    }else if(tipo==="update"){
-        textoAlerta="Los datos del sistema serán actualizados";
-    }else{
-        textoAlerta="Quieres realizar la operación solicitada";
-    }
-});
-
-$('#frmAdministradores').submit(function(e){
-
+$('.frmAdministradores').submit(function(e){
     e.preventDefault();
 
     var form=$(this);
-
     var tipo=form.attr('data-form');
     var accion=form.attr('action');
     var metodo=form.attr('method');
     var respuesta=form.children('.RespuestaAjax');
-
-    var msjError="<script>swal('Ocurrió un error inesperado','Por favor recargue la página','error');</script>";
+    var msjError="<script>Swal.fire ('Ocurrió un error inesperado','Por favor recargue la página','error');</script>";
     var formdata = new FormData(this);
 
-
     var textoAlerta;
+
     if(tipo==="save"){
         textoAlerta="Los datos que enviaras quedaran almacenados en el sistema";
     }else if(tipo==="delete"){
@@ -66,14 +23,6 @@ $('#frmAdministradores').submit(function(e){
         textoAlerta="Quieres realizar la operación solicitada";
     }
 
-    swal({
-        title: "¿Estás seguro?",   
-        text: textoAlerta,   
-        type: "question",   
-        showCancelButton: true,     
-        confirmButtonText: "Aceptar",
-        cancelButtonText: "Cancelar"
-    }).then(function () {
     var Cedula = $('#Cedula').val();
     var Nombre = $('#Nombre').val();
     var Apellido = $('#Apellido').val();
@@ -85,7 +34,7 @@ $('#frmAdministradores').submit(function(e){
     var Telefono = $('#Telefono').val();
     var Fecha = $('#Fecha').val();
     var action = 'registrar';
-
+    
     if(Cedula == "" || Nombre  == "" || Apellido == "" || Email == "" || Usuario == ""|| Password1 == "" || Password == "" || Direccion == "" || Telefono == "" || Fecha == ""){
         Swal.fire({
             icon: 'error',
@@ -101,42 +50,47 @@ $('#frmAdministradores').submit(function(e){
             showConfirmButton: false
           })
     }else{
+
+    Swal.fire({
+        title: "¿Estás seguro?",   
+        text: textoAlerta,   
+        icon: "question",   
+        showCancelButton: true,     
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar"
+    }).then(function () {
         $.ajax({
-            url:'././Ajax/administradorAjax.php',
-            method:'POST',
+            type: metodo,
+            url: accion,
+            data: formdata ? formdata : form.serialize(),
             async:true,
-            data:{action:action, Cedula:Cedula, Nombre:Nombre, Apellido:Apellido, Email:Email, Usuario:Usuario, Password1:Password1, Password:Password, Direccion:Direccion, Telefono:Telefono, Fecha:Fecha},
-            success:function (response){
-                Swal.fire({
-               
-                    icon: 'success',
-                    title: 'Registrado Exítosamente!!',
-                    showConfirmButton: false,
-                    timer: 1500
-                    
-                  })
-                  console.log(response);
-                  /*
-                  console.log (Cedula); 
-                  console.log (Nombre);
-                  console.log (Apellido);
-                  console.log (Email);
-                  console.log (Usuario);
-                  console.log (Password1);
-                  console.log (Password);
-                  console.log (Direccion);
-                  console.log (Telefono);
-                  console.log (Fecha);
-                  */
-                  
-                  
+            cache: false,
+            contentType: false,
+            processData: false,
+            xhr: function(){
+                var xhr = new window.XMLHttpRequest();
+                xhr.upload.addEventListener("progress", function(evt) {
+                  if (evt.lengthComputable) {
+                    var percentComplete = evt.loaded / evt.total;
+                    percentComplete = parseInt(percentComplete * 100);
+                    if(percentComplete<100){
+                        respuesta.html('<p class="text-center">Procesado... ('+percentComplete+'%)</p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" style="width: '+percentComplete+'%;"></div></div>');
+                      }else{
+                          respuesta.html('<p class="text-center"></p>');
+                      }
+                  }
+                }, false);
+                return xhr;
+            },
+            success: function (data) {
+                respuesta.html(data);
+            },
+            error: function() {
+                respuesta.html(msjError);
             }
         });
+        return false;
+    });
 
     }
-
-        
-    
-});
-
 });

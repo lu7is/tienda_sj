@@ -27,7 +27,7 @@ $('.FormularioAjax').submit(function(e){
     swal({
         title: "¿Estás seguro?",   
         text: textoAlerta,   
-        type: "question",   
+        icon: "question",   
         showCancelButton: true,     
         confirmButtonText: "Aceptar",
         cancelButtonText: "Cancelar"

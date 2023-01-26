@@ -82,6 +82,7 @@ $vistas = $vt->Obtener_vistas_controlador();
   <script src="<?php echo SERVERURL;?>/vistas/demo/demo.js"></script>
   <!-- SWEET ALERT -->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <!--AÑADIMOS ARCHIVO JS PROPIO-->
   <script src="<?php echo SERVERURL;?>/vistas/js/usuarios/administradores.js"></script>
  

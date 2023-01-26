@@ -6,10 +6,13 @@
     if(isset($_POST['Cedula'])){
         require_once "../controladores/administradorController.php";
         $InstAdmin = new administradorController();
-
+         $cedula =$_POST['Cedula'];
+         $usu =$_POST['Usuario'];
+         $pass =$_POST['Password1'];
+         
         if(isset($_POST['Cedula']) && isset($_POST['Usuario']) && isset($_POST['Password1']) ){
             echo $InstAdmin->Registrar_administrador_controller();
-            //$InstAdmin->Registrar_administrador_controller();
+           // $InstAdmin->Registrar_administrador_controller();
         }
     }else{
 
