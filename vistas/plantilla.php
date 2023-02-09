@@ -42,8 +42,14 @@ $vistas = $vt->Obtener_vistas_controlador();
     }
    
   else:
-    session_start();
+    session_start(['name'=>'SBP']);
+    require_once "./controladores/loginController.php";
 
+    $siSession = new loginController();
+
+    if(!isset($_SESSION['Token_SBP']) || !isset($_SESSION['Usuario_SBP']) ){
+      $siSession->Vlidar_Sesion();
+    }
 ?>
   <?php include "modulos/nav.php"; ?>
   <?php include "modulos/barraLateral.php"; ?>
@@ -68,6 +74,7 @@ $vistas = $vt->Obtener_vistas_controlador();
   <!--   Core JS Files   -->
   <script src="<?php echo SERVERURL;?>/vistas/js/core/jquery.min.js"></script> 
   <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+  
   <script src="<?php echo SERVERURL;?>/vistas/js/core/popper.min.js"></script>
   <script src="<?php echo SERVERURL;?>/vistas/js/core/bootstrap.min.js"></script>
   <script src="<?php echo SERVERURL;?>/vistas/js/plugins/perfect-scrollbar.jquery.min.js"></script>

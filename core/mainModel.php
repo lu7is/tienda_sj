@@ -1,4 +1,4 @@
-<?php
+ <?php
     if($peticionAjax){
         require_once "../core/configApp.php";
     }else{
@@ -41,7 +41,7 @@
         }
 
         protected function GuardarBitacora($datos){
-            $sql=self::conectar()->prepare("INSERT INTO tblbitacora(BitacoraCodigo, BitacoraFecha, BitacoraHoraInicio, BitacoraHoraFinal, BitacoraTipo, BitacoraYear, CuentaCodigo)
+            $sql=self::conectar()->prepare("INSERT INTO tblbitacora(bitacoraCodigo, bitacoraFecha, bitacoraHoraInicio, bitacoraHoraFinal, bitacoraTipo, bitacoraYear, cuentaCodigo)
                                             VALUES (:Codigo, :Fecha, :HoraInicio, :HoraFinal, :Tipo, :Year, :Cuenta)");
             $sql->bindParam(":Codigo",$datos['Codigo']);
             $sql->bindParam(":Fecha",$datos['Fecha']);
