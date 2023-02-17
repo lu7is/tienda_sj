@@ -1,27 +1,28 @@
 <?php
     if($peticionAjax){
-        require_once "../modelos/administradorModel.php";
+        require_once "../modelos/clientesModel.php";
     }else{
-        require_once "./modelos/administradorModel.php";
+        require_once "./modelos/clientesModel.php";
     }
 
-    class administradorController extends administradorModel{
+    class clientesController extends clientesModel{
 
         
-        public function Registrar_administrador_controller(){
-            $Cedula = mainModel::limpiar_cadena($_POST['Cedula']);
-            $Nombre = mainModel::limpiar_cadena($_POST['Nombre']);
-            $Apellido = mainModel::limpiar_cadena($_POST['Apellido']);
-            $Email = mainModel::limpiar_cadena($_POST['Email']);
-            $Usuario = mainModel::limpiar_cadena($_POST['Usuario']);
-            $Password1 = mainModel::limpiar_cadena($_POST['Password1']);
-            $Password = mainModel::limpiar_cadena($_POST['Password']);
-            $Direccion = mainModel::limpiar_cadena($_POST['Direccion']);
-            $Telefono = mainModel::limpiar_cadena($_POST['Telefono']);
-            $Fecha = mainModel::limpiar_cadena($_POST['Fecha']);
+        public function Registrar_Clientes(){
+            $CedulaC = mainModel::limpiar_cadena($_POST['CedulaC']);
+            $NombreC = mainModel::limpiar_cadena($_POST['NombreC']);
+            $ApellidoC = mainModel::limpiar_cadena($_POST['ApellidoC']);
+            $EmailC = mainModel::limpiar_cadena($_POST['EmailC']);
+            $UsuarioC = mainModel::limpiar_cadena($_POST['UsuarioC']);
+            $Password1C = mainModel::limpiar_cadena($_POST['Password1C']);
+            $PasswordC = mainModel::limpiar_cadena($_POST['PasswordC']);
+            $DireccionC = mainModel::limpiar_cadena($_POST['DireccionC']);
+            $SexoC = mainModel::limpiar_cadena($_POST['SexoC']);
+            $TelefonoC = mainModel::limpiar_cadena($_POST['TelefonoC']);
+            $FechaC = mainModel::limpiar_cadena($_POST['FechaC']);
             
 
-            if($Password1 != $Password){
+            if($Password1C != $PasswordC){
                 $alerta=[
                     "Alerta"=>"simple",
                     "Titulo"=>"ocurrio un error inesperado",
@@ -29,7 +30,7 @@
                     "Tipo"=>"error"
                 ];
             }else{
-            $consulta = mainModel::consultas_simples("SELECT cedulaAdmin FROM admin WHERE cedulaAdmin ='$Cedula '");
+            $consulta = mainModel::consultas_simples("SELECT cedulaCliente FROM tblcliente WHERE cedulaCliente ='$CedulaC '");
 
             if($consulta->rowCount()>=1){
                 $alerta = [
@@ -39,10 +40,8 @@
                     "Tipo"=>"error"
                 ];
             }else{
-                
-
-            if($Email != ""){
-                $consulta2 = mainModel::consultas_simples("SELECT cuentaEmail from cuenta WHERE cuentaEmail ='$Email '");
+            if($EmailC != ""){
+                $consulta2 = mainModel::consultas_simples("SELECT cuentaEmail from cuenta WHERE cuentaEmail ='$EmailC '");
                     $ec = $consulta2->rowCount();
             }else{
                     $ec = 0;
@@ -56,7 +55,7 @@
                     "Tipo"=>"error"
                 ];
             }else{
-                $consulta3 = mainModel::consultas_simples("SELECT cuentaUsuario from cuenta WHERE cuentaUsuario ='$Usuario '");
+                $consulta3 = mainModel::consultas_simples("SELECT cuentaUsuario from cuenta WHERE cuentaUsuario ='$UsuarioC '");
                 
                 if($consulta3->rowCount()>= 1){
                     $alerta = [
@@ -67,49 +66,52 @@
                     ];
                 }else{
                     $consulta4 = mainModel::consultas_simples("SELECT id from cuenta ");
-                    $numero = ($consulta4->rowCount())+1;
-                    $Codigo = mainModel::generar_codigo("AC",7,$numero);
+                    $numeroC = ($consulta4->rowCount())+1;
+                    $CodigoC = mainModel::generar_codigo("AC",7,$numeroC);
 
-                    $Clave = mainModel::encriptar($Password);
+                    $ClaveC = mainModel::encriptar($PasswordC);
 
                     $dataAC = [
-                        "Codigo"=>$Codigo,
-                        "Usuario"=>$Usuario,
-                        "Clave"=>$Clave,
-                        "Email"=>$Email,
+                        "Codigo"=>$CodigoC,
+                        "Usuario"=>$UsuarioC,
+                        "Clave"=>$ClaveC,
+                        "Email"=>$EmailC,
                         "Estado"=>"Activo",
-                        "Fecha"=>$Fecha
+                        "Fecha"=>$FechaC
                     ];
+
+                     $guardarCuenta = mainModel::agregar_cuenta($dataAC);
                   
-                 $guardarCuenta = mainModel::agregar_cuenta($dataAC);
-       
                     if($guardarCuenta->rowCount()>=1){
 
                         $dataAD=[
-                          "Cedula"=>$Cedula,
-                           "Nombre"=>$Nombre,
-                           "Apellido"=>$Apellido,
-                           "Telefono"=>$Telefono,
-                           "Direccion"=>$Direccion,
-                           "Codigo"=>$Codigo
+                          "Cedula"=>$CedulaC,
+                           "Nombre"=>$NombreC,
+                           "Apellido"=>$ApellidoC,
+                           "Telefono"=>$TelefonoC,
+                           "Sexo" => $SexoC,
+                           "Direccion"=>$DireccionC,
+                           "Codigo"=>$CodigoC
                         ];
-                        
-                  $guardarAdmin = administradorModel::Registrar_administrador($dataAD);
-                  
-                    if($guardarAdmin->rowCount()>=1){
+           //print_r ($dataAD);
+                      $guardarAdmins = clientesModel::Registrar($dataAD);
+                    
+                     // print_r ($guardarAdmin);
+                     
+                    if($guardarAdmins->rowCount()>=1){
                         $alerta = [
                             "Alerta"=>"limpiar",
-                            "Titulo"=>"Administrador Registrado",
+                            "Titulo"=>"Cliente Registrado",
                              "Texto"=>"El Administrador se ha registrado correctamente",
                              "Tipo"=>"success"
 
                             ];
                         }else{
-                            mainModel::eliminar_cuenta($Codigo);
+                            mainModel::eliminar_cuenta($CodigoC);
                             $alerta = [
                                 "Alerta"=>"simple",
                                 "Titulo"=>"Error inesperado",
-                                "Texto"=>"El Administrador no fue registrada",
+                                "Texto"=>"El Cliente no fue registrado",
                                 "Tipo"=>"error"
                             ];
                         }

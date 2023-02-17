@@ -145,6 +145,7 @@
                         confirmButtonText: 'Aceptar'
                       }).then(function () {
                         $('.frmAdministradores')[0].reset();
+                        $('.frmAdministradores')[0].hiden();
                       })
                      
                     </script>

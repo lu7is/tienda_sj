@@ -83,7 +83,7 @@ if($peticionAjax){
 
         public function Vlidar_Sesion(){
             session_destroy();
-            return header("Location: ".SERVERURL." ");
+            return header("Location: www.google.com ");
         }
 
 

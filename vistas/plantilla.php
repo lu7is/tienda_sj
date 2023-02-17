@@ -34,13 +34,15 @@ require_once "./controladores/VistasController.php";
 $vt = new vistasController();
 $vistas = $vt->Obtener_vistas_controlador();
 
-  if($vistas == "login" || $vistas == "404" ):
+  if($vistas == "login" || $vistas == "404"  || $vistas == "temporal"  ):
     if($vistas == "login"){
       require_once "contenidos/login.php";
+    }elseif ($vistas == "temporal"){
+      require_once "contenidos/temporal.php";
     }else{
+      
       require_once "contenidos/404.php";
     }
-   
   else:
     session_start(['name'=>'SBP']);
     require_once "./controladores/loginController.php";
@@ -48,8 +50,14 @@ $vistas = $vt->Obtener_vistas_controlador();
     $siSession = new loginController();
 
     if(!isset($_SESSION['Token_SBP']) || !isset($_SESSION['Usuario_SBP']) ){
-      $siSession->Vlidar_Sesion();
+      //$siSession->Vlidar_Sesion();
+
+    //echo $_SESSION['Token_SBP'];
+    //echo $_SESSION['Usuario_SBP'];
     }
+
+    
+
 ?>
   <?php include "modulos/nav.php"; ?>
   <?php include "modulos/barraLateral.php"; ?>

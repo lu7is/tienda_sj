@@ -5,15 +5,16 @@
         require_once "./core/mainModel.php";
     }
 
-    class administradorModel extends mainModel{
+    class clientesModel extends mainModel{
 
-        protected function Registrar_administrador($data){
-            $sql = mainModel::conectar()->prepare("INSERT INTO admin (cedulaAdmin, nombreAdmin, apellidoAdmin, telAdmin, direccionAdmin, cuentaCodigo ) 
-            VALUES (:Cedula, :Nombre, :Apellido, :Telefono, :Direccion, :Codigo)");
+        protected function Registrar_Clientee($data){
+            $sql = mainModel::conectar()->prepare("INSERT INTO tblcliente (cedulaCliente, nombreCliente, apellidoCliente, sexoCliente, telCliente, direccionCliente, cuentaCodigo ) 
+            VALUES (:Cedula, :Nombre, :Apellido, :Telefono,:Sexo,:Direccion, :Codigo)");
             $sql->bindParam(":Cedula",$data['Cedula']);
             $sql->bindParam(":Nombre",$data['Nombre']);
             $sql->bindParam(":Apellido",$data['Apellido']);
             $sql->bindParam(":Telefono",$data['Telefono']);
+            $sql->bindParam(":Sexo",$data['Sexo']);
             $sql->bindParam(":Direccion",$data['Direccion']);
             $sql->bindParam(":Codigo",$data['Codigo']);
             $sql->execute();

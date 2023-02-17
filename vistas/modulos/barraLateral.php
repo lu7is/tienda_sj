@@ -43,7 +43,7 @@
           </a>
         </li>
         <li>
-          <a href="<?php echo SERVERURL;?>dashboard">
+          <a href="<?php echo SERVERURL;?>temporal">
             <i class="now-ui-icons text_caps-small"></i>
             <p>Typography</p>
           </a>
