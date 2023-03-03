@@ -20,13 +20,14 @@
         }
 
         protected function agregar_cuenta($datos){
-            $sql = self::conectar()->prepare("INSERT INTO cuenta (cuentaCodigo, cuentaUsuario, cuentaClave, cuentaEmail, cuentaEstado, fecha ) 
-            VALUES(:Codigo, :Usuario, :Clave, :Email, :Estado, :Fecha )");
+            $sql = self::conectar()->prepare("INSERT INTO cuenta (cuentaCodigo, cuentaUsuario, cuentaClave, cuentaEmail, cuentaEstado, cuentaTipo, fecha ) 
+            VALUES(:Codigo, :Usuario, :Clave, :Email, :Estado, :Tipo, :Fecha )");
             $sql->bindParam(":Codigo",$datos['Codigo']);
             $sql->bindParam(":Usuario",$datos['Usuario']);
             $sql->bindParam(":Clave",$datos['Clave']);
             $sql->bindParam(":Email",$datos['Email']);
             $sql->bindParam(":Estado",$datos['Estado']);
+            $sql->bindParam(":Tipo",$datos['Tipo']);
             $sql->bindParam(":Fecha",$datos['Fecha']);
             $sql->execute();
             return $sql;
@@ -145,7 +146,8 @@
                         confirmButtonText: 'Aceptar'
                       }).then(function () {
                         $('.frmAdministradores')[0].reset();
-                        $('.frmAdministradores')[0].hiden();
+                        $('.frmclientes')[0].reset();
+                        $(window).attr('location','usuarios');
                       })
                      
                     </script>

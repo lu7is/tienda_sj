@@ -1,6 +1,6 @@
 <div class="content">
   <div class="row">
-    <div class="col-md-8"><br>
+    <div ><br>
     <!-- AQUI EMPIEZA EL FORMULARIO DE ADMINISTRADORES -->
      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Registrar Administradores</button>
        
@@ -155,10 +155,44 @@
                   </div>
                 </div>
               </div>
+
+              
               
             </div>
             <!-- AQUI TERMINA EL FORMULARIO DE ADMINISTRADORES 23/01/2023-->
-
+            <center>
+            <table class="table table- table-hover">
+  <thead>
+    <tr class="table-dark">
+      <th scope="col">Id</th>
+      <th scope="col">Cedula</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Direccion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+            </center>
 
 
 

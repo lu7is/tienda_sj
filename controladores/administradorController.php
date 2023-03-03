@@ -68,6 +68,7 @@
                 }else{
                     $consulta4 = mainModel::consultas_simples("SELECT id from cuenta ");
                     $numero = ($consulta4->rowCount())+1;
+                    
                     $Codigo = mainModel::generar_codigo("AC",7,$numero);
 
                     $Clave = mainModel::encriptar($Password);
@@ -78,6 +79,7 @@
                         "Clave"=>$Clave,
                         "Email"=>$Email,
                         "Estado"=>"Activo",
+                        "Tipo"=>"Administrador",
                         "Fecha"=>$Fecha
                     ];
                   
@@ -102,7 +104,6 @@
                             "Titulo"=>"Administrador Registrado",
                              "Texto"=>"El Administrador se ha registrado correctamente",
                              "Tipo"=>"success"
-
                             ];
                         }else{
                             mainModel::eliminar_cuenta($Codigo);

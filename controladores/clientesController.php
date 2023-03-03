@@ -77,6 +77,7 @@
                         "Clave"=>$ClaveC,
                         "Email"=>$EmailC,
                         "Estado"=>"Activo",
+                        "Tipo"=>"Cliente",
                         "Fecha"=>$FechaC
                     ];
 
@@ -93,12 +94,9 @@
                            "Direccion"=>$DireccionC,
                            "Codigo"=>$CodigoC
                         ];
-           //print_r ($dataAD);
+         // echo print_r ($dataAD);
                       $guardarAdmins = clientesModel::Registrar($dataAD);
-                    
-                     // print_r ($guardarAdmin);
-                     
-                    if($guardarAdmins->rowCount()>=1){
+                     if($guardarAdmins->rowCount()>=1){
                         $alerta = [
                             "Alerta"=>"limpiar",
                             "Titulo"=>"Cliente Registrado",

@@ -1,14 +1,23 @@
 <?php
-$peticionAjax = true;
-require_once "../core/configGeneral.php";
+  /* Instancia del controlador creado 24/02/2023 */ 
+    $peticionAjax = true;
+    require_once "../core/configGeneral.php";
+    $fr = $_GET['Token'];
 
-if(isset($_POST['UsuarioF']) && isset($_POST['ClaveF'])){
-    require_once "../controladores/loginController.php";
-    $login = new  loginController();
-    echo $login->IniciarSesion_controlador();
-   // echo $login->IniciarSesion_controlador();
-}else{
-    session_start();
-    session_destroy();
-   echo '<script> window.location.href="'.SERVERURL.'"</script>';
-}
+    echo $fr;
+
+    if(isset($_GET['Token'])){
+       require_once "../controladores/loginController.php";
+      $logut = new loginController();
+       echo $logut->cerrar_sesion();
+    }else{
+        session_start(['name' => 'SMP']);
+        session_unset();
+        session_destroy();
+        header("Location:".SERVERURL."");
+        exit();
+       
+    }
+
+    
+   
